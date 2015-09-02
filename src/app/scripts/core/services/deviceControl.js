@@ -256,16 +256,7 @@ function ($http, $rootScope, $q, c8yBase, c8yRealtime) {
       throw new Error('c8yDeviceControl: data must have a deviceId property');
     }
 
-    return $http.post(url, data, cfg).then(getIdFromRes).finally(function (id) {
-      evtBus.$emit('create');
-      return id;
-    });
-  }
-  
-  function getIdFromRes(res) {
-    var regexp = new RegExp(opIdLocationRegExp);
-    var matches = res.headers('Location').match(regexp);
-    return parseInt(matches[1], 10);
+    return $http.post(url, data, cfg);
   }
   
   /**
